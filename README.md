@@ -1,4 +1,4 @@
-# mental_health_survey_project
+# Mental Health Survey Project
 Deep Learning model to predict depression from survey data
 Project Documentation
 1. Introduction:

@@ -1,11 +1,11 @@
 # mental_health_survey_project
 Deep Learning model to predict depression from survey data
 Project Documentation
-1. Introduction
+1. Introduction:
 Depression is a growing public health challenge. Early detection can help in timely intervention and treatment. This project aims to predict whether an individual may experience depression based on demographic, academic, lifestyle, and medical history factors. We use a deep learning model to identify hidden patterns in survey data and deploy it via a Streamlit web app for real-time predictions hosted on AWS.
-2. Problem Statement
+2. Problem Statement:
 The objective is to build a predictive model that classifies individuals into high-risk or low-risk categories for depression. The model must ensure fairness across demographics (gender, age, profession, city), achieve high predictive accuracy using balanced datasets, and be practical for healthcare, corporate, and governmental decision-making.
-3. Dataset
+3. Dataset:
 - Source: Mental Health Survey Data (CSV format)
 - Features:
   - Demographics: Age, Gender, City
@@ -14,7 +14,7 @@ The objective is to build a predictive model that classifies individuals into hi
   - Lifestyle: Dietary habits, Sleep duration, Work/Study hours
   - History: Family history of mental illness, Suicidal thoughts
 - Target Variable: Depression (0 = No, 1 = Yes)
-4. Data Preprocessing
+4. Data Preprocessing:
 The following preprocessing steps were applied on training & test datasets:
 
 - Cleaning & Standardization:
@@ -34,7 +34,7 @@ The following preprocessing steps were applied on training & test datasets:
 
 - Scaling:
   - StandardScaler used for numerical feature scaling.
-5. Model Development
+5. Model Development:
 - Framework: TensorFlow (Keras API)
 - Architecture:
   - Input layer: 100+ encoded features
@@ -46,7 +46,7 @@ The following preprocessing steps were applied on training & test datasets:
   - Optimizer: Adam (lr=0.001)
   - Metrics: Accuracy, Precision, Recall, AUC
   - Early Stopping: patience = 10
-6. Model Evaluation
+6. Model Evaluation:
 Validation Metrics:
 - Accuracy: ~84%
 - Precision: ~0.82
@@ -74,13 +74,13 @@ The project has been successfully deployed with the following options:
 - Deployment Environment:
   - The Streamlit app is deployed on AWS (Elastic Beanstalk/EC2) for real-time global access.
   - Ensures scalability, reliability, and security for end users.
-8. Results & Insights
+8. Results & Insights:
 - The model achieved high accuracy and fairness across demographic groups.
 - Healthcare Providers: Enables early screening of high-risk patients.
 - Mental Health Clinics: Prioritization of treatment queues.
 - Corporates: Employee mental health monitoring.
 - Governments & NGOs: Regional and population-level risk analytics.
-9. Deliverables
+9. Deliverables:
 - Source Code: Data preprocessing, model training, and deployment scripts.
 - Trained Model: `mental_health_survey_final.keras`, scaler, and feature columns.
 - Streamlit App: Interactive web application.

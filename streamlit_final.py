@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 
-# Page configuration
+
 st.set_page_config(
     page_title="Mental Health Platform",
     page_icon="🧠",
@@ -15,7 +15,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Load model and scaler once globally
 @st.cache_resource
 def load_model_and_scaler():
     try:
@@ -29,7 +28,6 @@ def load_model_and_scaler():
 
 model, scaler, feature_cols = load_model_and_scaler()
 
-# Load test data for business use cases
 @st.cache_data
 def load_and_preprocess_test_data():
     try:
@@ -41,7 +39,6 @@ def load_and_preprocess_test_data():
 
 test_data = load_and_preprocess_test_data()
 
-# Define helper functions shared for business use cases
 def predict_test_batch(df_subset):
     try:
         df_aligned = df_subset.reindex(columns=feature_cols, fill_value=0)
@@ -62,11 +59,10 @@ def add_business_columns(df):
     df_copy['region'] = np.random.choice(regions, len(df_copy))
     return df_copy
 
-# Setup navigation tabs or radio buttons
 page = st.sidebar.radio("Select Page", ["Mental Health Assessment", "Business Use Cases"])
 
 if page == "Mental Health Assessment":
-    # Inject CSS for styling
+    
     st.markdown("""
     <style>
         .main-header {
@@ -144,12 +140,12 @@ if page == "Mental Health Assessment":
     """, unsafe_allow_html=True)
 
 
-    # Halt if model not loaded
+    
     if model is None or scaler is None or feature_cols is None:
         st.error("Model could not be loaded. Please ensure the model files are in the correct directory.")
         st.stop()
 
-    # Input form code as in first script (Personal Info, Academic, Lifestyle, Family History)
+    
     st.markdown('<div class="feature-section">', unsafe_allow_html=True)
     st.markdown("### 📝 Personal Information")
     col1, col2, col3 = st.columns(3)
@@ -498,3 +494,4 @@ elif page == "Business Use Cases":
 
     st.markdown("---")
     st.markdown("**Note:** This application uses preprocessed test data from the mental health survey dataset. Predictions are made using a trained deep learning model.")
+

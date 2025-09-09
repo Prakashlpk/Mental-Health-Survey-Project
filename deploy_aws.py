@@ -8,7 +8,7 @@ import os
 import warnings
 warnings.filterwarnings('ignore')
 
-# Page configuration
+
 st.set_page_config(
     page_title="Mental Health Platform",
     page_icon="🧠",
@@ -16,9 +16,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ---------------------------
-# Setup relative paths for Linux
-# ---------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 model_path = os.path.join(BASE_DIR, "mental_health_survey_final.keras")
@@ -26,7 +23,6 @@ scaler_path = os.path.join(BASE_DIR, "scaler.save")
 feature_cols_path = os.path.join(BASE_DIR, "feature_cols.save")
 test_data_path = os.path.join(BASE_DIR, "final_test_new.zip")
 
-# Load model and scaler once globally
 @st.cache_resource
 def load_model_and_scaler():
     try:
@@ -40,7 +36,6 @@ def load_model_and_scaler():
 
 model, scaler, feature_cols = load_model_and_scaler()
 
-# Load test data for business use cases
 @st.cache_data
 def load_and_preprocess_test_data():
     try:
@@ -52,9 +47,6 @@ def load_and_preprocess_test_data():
 
 test_data = load_and_preprocess_test_data()
 
-# ---------------------------
-# Helper functions (unchanged)
-# ---------------------------
 def predict_test_batch(df_subset):
     try:
         df_aligned = df_subset.reindex(columns=feature_cols, fill_value=0)
@@ -75,16 +67,11 @@ def add_business_columns(df):
     df_copy['region'] = np.random.choice(regions, len(df_copy))
     return df_copy
 
-# ---------------------------
-# Main Streamlit app code
-# ---------------------------
-# Your full original Streamlit logic here
-# Everything below can remain exactly as you provided
-# Just now it will use Linux-compatible paths (relative paths)
+
 page = st.sidebar.radio("Select Page", ["Mental Health Assessment", "Business Use Cases"])
 
 if page == "Mental Health Assessment":
-    # Inject CSS for styling
+    
     st.markdown("""
     <style>
         .main-header {
@@ -162,12 +149,12 @@ if page == "Mental Health Assessment":
     """, unsafe_allow_html=True)
 
 
-    # Halt if model not loaded
+    
     if model is None or scaler is None or feature_cols is None:
         st.error("Model could not be loaded. Please ensure the model files are in the correct directory.")
         st.stop()
 
-    # Input form code as in first script (Personal Info, Academic, Lifestyle, Family History)
+    
     st.markdown('<div class="feature-section">', unsafe_allow_html=True)
     st.markdown("### 📝 Personal Information")
     col1, col2, col3 = st.columns(3)
@@ -243,7 +230,7 @@ if page == "Mental Health Assessment":
                                 help="Do you have a family history of mental illness?")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Prediction button and logic
+    
     st.markdown("### 🔮 Get Your Assessment")
     if st.button("Predict Depression Risk", key="predict_btn"):
         try:
@@ -339,7 +326,7 @@ if page == "Mental Health Assessment":
             st.error(f"Error making prediction: {e}")
             st.error("Please ensure all model files are present and try again.")
 
-    # Sidebar content for resources etc.
+    
     st.sidebar.markdown("### 🆘 Mental Health Resources")
     st.sidebar.markdown("""
     **Professional Help:**
@@ -388,12 +375,12 @@ if page == "Mental Health Assessment":
 
 
 elif page == "Business Use Cases":
-    # Halt if model or data cannot load
+    
     if model is None or scaler is None or feature_cols is None or test_data is None:
         st.error("Model or test data could not be loaded. Ensure all required files are available.")
         st.stop()
 
-    # Sidebar for business modules
+    
     module = st.sidebar.selectbox("Select Business Module",
                                  ["Healthcare Providers", "Mental Health Clinics", "Corporate Wellness Programs", "Government and NGOs"])
 
@@ -401,7 +388,7 @@ elif page == "Business Use Cases":
     st.write(f"**Selected Module:** {module}")
     st.write(f"**Test Dataset Size:** {len(test_data)} records")
 
-    # Business Modules logic as per second script, unchanged for brevity
+    
     if module == "Healthcare Providers":
         st.header("🏥 Healthcare Providers - Early Depression Screening")
         sample_size = st.slider("Select sample size for screening", 50, min(1000, len(test_data)), 200)
@@ -516,3 +503,4 @@ elif page == "Business Use Cases":
 
     st.markdown("---")
     st.markdown("**Note:** This application uses preprocessed test data from the mental health survey dataset. Predictions are made using a trained deep learning model.")
+

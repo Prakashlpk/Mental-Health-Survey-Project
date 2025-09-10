@@ -1,4 +1,4 @@
-Mental Health Survey Project
+**Mental Health Survey Project**
 
 This project leverages deep learning to predict the risk of depression from survey data that includes demographic, academic, lifestyle, and medical history factors.
 

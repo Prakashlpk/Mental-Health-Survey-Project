@@ -4,7 +4,7 @@ This project leverages deep learning to predict the risk of depression from surv
 
 The goal is to provide an early screening tool that is both accurate and fair across diverse groups (gender, age, profession, and city). The solution is deployed as a Streamlit web application hosted on AWS, enabling real-time predictions for end users.
 
-Key Features
+**Key Features**
 
 Deep Learning Model: Identifies hidden patterns in mental health survey data.
 
@@ -16,7 +16,7 @@ Streamlit Application: Easy-to-use interface where individuals or organizations 
 
 AWS Deployment: Ensures scalability, reliability, and accessibility worldwide.
 
-Business Use Cases
+**Business Use Cases**
 
 Healthcare Providers: Early detection of at-risk individuals for timely intervention.
 
